@@ -1,0 +1,20 @@
+﻿@model ImageCorner.Models.ApplicationUser
+
+<div class="user">
+    <div class="js-dropdown js-user-dropdown" aria-hidden="true">
+        <button class="js-dropdown-drop"></button>
+        <div class="menu" aria-hidden="true">
+            <div class="section">
+                @(Model.FirstName + " " + Model.LastName)
+                <small>@Model.Email</small>
+            </div>
+            <ul class="section">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign off</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

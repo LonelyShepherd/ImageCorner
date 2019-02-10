@@ -1,0 +1,18 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ImageCorner.Models.ApplicationUser>
+@{ 
+    var User = Model.LayoutModel;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/dashboard.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+    @RenderBody()
+    
+    @RenderSection("scripts", required: false)
+</html>

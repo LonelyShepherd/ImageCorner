@@ -1,0 +1,87 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ICollection<ImageCorner.Models.Image>, ImageCorner.Models.ApplicationUser>
+@{
+    var User = Model.LayoutModel;
+    ViewBag.Title = "Showcase - ImageCorner";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<body>
+    <div class="dashboard-nav-overlay"></div>
+    <div class="dashboard-nav-container">
+        <div class="dashboard-nav-logo">
+            <a href="/User"><img src="~/assets/images/logo.png" /></a>
+        </div>
+        <ul class="dashboard-nav-content">
+            <li>@Html.ActionLink("Home", "Index")</li>
+            <li>@Html.ActionLink("My Corner", "MyCorner")</li>
+            <li>@Html.ActionLink("Showcase", "Index", routeValues: null, htmlAttributes: new { @class = "active" })</li>
+        </ul>
+    </div>
+    <div class="dashboard-header clearfix">
+        <h4>Showcase</h4>
+        <div class="options">
+            @{Html.RenderPartial("~/Views/Shared/_User.cshtml", User);}
+        </div>
+    </div>
+    <div class="page-content">
+        <button type="button" class="nav-collapser" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="dashboard-content">
+            <div class="corner showcase clearfix">
+                <h6>Images<button>Hide</button></h6>
+                <ul class="images clearfix">
+                    
+                    @{
+                        foreach (var image in Model.PageModel)
+                        {
+                            <li id="@image.Id" class="image-item" data-title="@image.Name" data-author="@(Model.LayoutModel.FirstName + " " + Model.LayoutModel.LastName)">
+                                <div class="image-container">
+                                    <img src="~/Uploads/@image.ApplicationUserId/@image.Name" />
+                                </div>
+                                <div>
+                                    <span>@image.Name</span>
+                                    <span>Posted by @(image.ApplicationUser.FirstName + " " + image.ApplicationUser.LastName)</span>
+                                    <span>@image.Posted.ToShortTimeString() - @image.Posted.ToShortDateString()</span>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+                <h6>Albums<button>Hide</button></h6>
+                <ul class="albums clearfix">
+                    @foreach (var album in Model.LayoutModel.Albums.Where(m => m.Type == "Public"))
+                    {
+                        <li id="@album.Id" class="album-item">
+                            <a href="/User/Album?id=@album.Id"></a>
+                            <div title="@album.Name"></div>
+                            <div>
+                                <span>@album.Name</span>
+                                <span>Posted by @(Model.LayoutModel.FirstName + " " + Model.LayoutModel.LastName)</span>
+                                <span>@album.Images.Count images</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div>
+            <span class="title"></span><span class="author"></span>
+        </div>
+        <img src="" />
+        <button data-action="close"></button>
+        <button data-action="prev"></button>
+        <button data-action="next"></button>
+    </div>
+    <div class="js-actions-info">
+        <i></i>
+        <span></span>
+        <button>Close</button>
+    </div>
+</body>
+
+@Scripts.Render("~/assets/js/showcase.bundle.js")

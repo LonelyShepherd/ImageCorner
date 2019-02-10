@@ -1,0 +1,114 @@
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    background: #fbfbfb;
+}
+
+.body-content {
+    padding-top: 60px;
+    height: 100%;
+    position: relative;
+    display: table;
+}
+
+a {
+    text-decoration: none !important;
+    color: #6b6b6b !important;
+}
+
+a:hover {
+    color: #808080 !important;
+}
+
+.btn {
+    transition: none !important;
+    border: none !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+}
+
+.btn:hover, .btn:focus {
+    box-shadow: none !important;
+}
+
+.btn-success {
+    background: #1bb76e !important;
+}
+
+.btn-success:hover {
+    background: #20c578 !important;
+}
+
+.btn-info:hover {
+    background: #1bb8d1 !important;
+}
+
+.btn-success:active, .btn-success:focus {
+    box-shadow: none !important;
+}
+
+.input-validation-error {
+    border: 1px solid #cb8181;
+}
+
+.global-navbar {
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    background: #fff;
+    height: 50px;
+}
+
+.global-navbar a.register {
+    color: #fff !important;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+
+
+
+.account-form-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+.account-form-content {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.account-form-content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.account-form-content input[type="submit"] {
+    font-weight: 600;
+    float: right;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    margin-top: 10px;
+}
+
+.account-form-content h1 {
+    font-size: 2em;
+}
+
+.account-form-content small {
+    font-size: .5em;
+    display: block;
+    margin-top: 5px;
+}
+
+.account-form-error {
+    display: block;
+    margin-bottom: 1em;
+}
+
+
+
+footer {
+    text-align: center;
+    color: #727272;
+}

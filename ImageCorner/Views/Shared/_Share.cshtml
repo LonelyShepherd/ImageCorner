@@ -1,0 +1,28 @@
+﻿@model ImageCorner.Models.ShareViewModel
+
+@*<div class="js-modal js-modal-share js-modal-no-footer">*@
+    <div class="js-modal-overlay"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="js-modal-close"></button>
+            <div>
+                <h4>Share</h4>
+            </div>
+        </div>
+        <div class="modal-body">
+            <span>@Model.Name</span>
+            <div>
+                @if (Model.Url == "")
+                {
+                    <span>No link created</span>
+                    <button>Create link</button>
+                }
+                else
+                {
+                    <input type="text" readonly="readonly" value="@Model.Url" />
+                    <button>Copy link</button>
+                }
+            </div>
+        </div>
+    </div>
+@*</div>*@

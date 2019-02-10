@@ -1,0 +1,81 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ImageCorner.Models.Album, ImageCorner.Models.ApplicationUser>
+@{
+    ViewBag.Title = Model.PageModel.Name + " - ImageCorner";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<body id="album">
+    <div class="dashboard-nav-overlay"></div>
+    <div class="dashboard-nav-container">
+        <div class="dashboard-nav-logo">
+            <a href="/User"><img src="~/assets/images/logo.png" /></a>
+        </div>
+        <ul class="dashboard-nav-content list-unstyled">
+            <li>@Html.ActionLink("Home", "Index")</li>
+            <li>@Html.ActionLink("My Corner", "MyCorner")</li>
+            <li>@Html.ActionLink("Showcase", "Showcase")</li>
+        </ul>
+    </div>
+    <div class="dashboard-header clearfix">
+        <h4>@Html.ActionLink(Model.PageModel.Name, "MyCorner")</h4>
+        <div class="options">
+            <button class="share-button" id="@Model.PageModel.Id" data-share="true" data-share-type="album">Share album</button>
+            @{Html.RenderPartial("~/Views/Shared/_User.cshtml", Model.LayoutModel);}
+        </div>
+    </div>
+    <div class="page-content">
+        <button type="button" class="nav-collapser" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="dashboard-content">
+            <div class="album-content">
+                <ul class="clearfix">
+                    @foreach (var image in Model.PageModel.Images)
+                    {
+                        <li id="@image.Id" class="image-item" data-title="@image.Name">
+                            <div class="image-container" title="@image.Name">
+                                <img src="~/Uploads/@image.ApplicationUserId/@image.Name" />
+                                @if (image.Type == "Public")
+                                {
+                                    <span>showcasing</span>
+                                }
+                            </div>
+                            <div>
+                                <span>@image.Name</span>
+                                <div class="js-dropdown js-image-dropdown">
+                                    <button class="js-dropdown-drop"><i></i><i></i><i></i></button>
+                                    <div class="menu" aria-hidden="true">
+                                        <ul class="section">
+                                            <li><button>Share</button></li>
+                                            <li><button>@(image.Type == "Public" ? "Make Private" : "Make Public")</button></li>
+                                            <li><button>Remove</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span>@image.Posted.ToShortTimeString() - @image.Posted.ToShortDateString()</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div>
+            <span class="title"></span><span class="author"></span>
+        </div>
+        <img src="" />
+        <button data-action="close"></button>
+        <button data-action="prev"></button>
+        <button data-action="next"></button>
+    </div>
+    <div class="js-actions-info">
+        <i></i>
+        <span></span>
+        <button>Close</button>
+    </div>
+</body>
+
+@Scripts.Render("~/assets/js/album.bundle.js")

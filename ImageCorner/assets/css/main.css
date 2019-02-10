@@ -1,0 +1,427 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    width: 100%;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: 100;
+    color: #289dff;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+}
+
+.btn-outline {
+    display: block;
+    text-decoration: none;
+    color: #289dff; 
+    border: 2px solid #289dff;
+    border-radius: 6px;
+    width: 175px;
+    height: 53px;
+    line-height: 53px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-filled {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #289dff;
+    border-radius: 6px;
+    width: 175px;
+    height: 53px;
+    line-height: 53px;
+    margin-top: 30px;
+}
+
+
+
+nav {
+    height: 150px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 50px 0;
+}
+
+nav:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+nav .brand img {
+    vertical-align: middle !important;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+nav a {
+    text-decoration: none;
+    color: #202427;
+    font-size: 20px;
+    font-weight: 700;
+    height: 50px;
+    line-height: 50px;
+}
+
+nav a:first-child {
+    float: left;
+}
+
+nav .sign-up {
+    list-style: none;
+}
+
+nav .sign-up li {
+    float: right;
+}
+
+nav .sign-up li:last-child {
+    margin-right: 15px;
+}
+
+nav .sign-up li:first-child a {
+    background: #7bdb2d;
+    box-shadow: 0 3px 4px rgba(0,0,0,.15);
+    padding: 0 1em;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,.1);
+}
+
+
+header {
+    height: 1000px;
+    min-height: 1000px;
+    padding: 0 5%;
+    background-image: url("../images/background_header.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top right;
+}
+
+header h1 {
+    width: 40%;
+    margin: 2em 0 0 0;
+}
+
+
+
+
+.about {
+    padding: 0 5%;
+    background-image: url("../images/background_about.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 80%;
+    height: 900px;
+    min-height: 900px;
+}
+
+.about h1 {
+    margin-bottom: 30px;
+    padding-top: 300px;
+    margin-left: 50%;
+}
+
+
+
+
+.call-to-action {
+    text-align: center;
+    padding: 20em 5%;
+    background-image: url("../images/background_calltoaction.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+}
+
+.call-to-action h1, .call-to-action a {
+    display: inline-block;
+    margin: 0 60px;
+    vertical-align: middle;
+}
+
+
+
+footer {
+    padding: 0 5%;
+    margin-bottom: 40px;
+    color: #289dff;
+}
+
+footer p {
+    text-align: center;
+}
+
+
+.account-form-content {
+    width: 30%;
+}
+
+.account-form-content .account-form-error {
+    color: crimson;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.account-form-content h1 {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.account-form-content h1 small {
+    font-size: 14px;
+    color: #969696;
+    display: block;
+    margin-top: 5px;
+}
+
+.account-form-content h1 small a {
+    color: #8b8b8b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.account-form-content .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.account-form-content .form-group label {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #515151;
+}
+
+.account-form-content .form-group input {
+    width: 100%;
+}
+
+.account-form-content .form-group input {
+    display: block;
+    border: 1px solid #c9c9c9;
+    padding: .3em .5em;
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: #6f6f6f;
+}
+
+.account-form-content .form-group input.input-validation-error {
+    background: #fff7f7;
+}
+
+.account-form-content .form-group .field-validation-error {
+    color: crimson;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.account-form-content .form-group .checkbox input {
+    float: left;
+    width: auto;
+    position: relative;
+    bottom: -3px;
+    margin-right: 5px;
+}
+
+.account-form-content .form-group input[type="submit"] {
+    float: right;
+    width: auto;
+    padding: 10px 15px;
+    margin-top: 15px;
+    background: #289dff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/*----------responsive----------*/
+
+@media only screen and (max-width: 1000px) {
+    header {
+        height: 1600px;
+        min-height: 1600px;
+        background-image: url("../images/mobile_background_header.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom right;
+    }
+
+    .sign-in-header {
+        height: 2100px;
+        min-height: 2100px;
+    }
+
+    .sign-up-header {
+        height: 2300px;
+        min-height: 2300px;
+    }
+
+    header h1, .account-form-content {
+        width: 100%;
+    }
+
+
+    .about {
+        background-image: url("../images/mobile_background_about.png");
+        background-size: contain;
+        height: 900px;
+        min-height: 900px;
+        overflow-y: visible;
+    }
+
+    .about h1 {
+        padding-top: 900px;
+        margin-left: 0;
+    }
+
+    .call-to-action {
+        margin-top: 25em;
+        padding: 15em 5%;
+        background-size: 70%;
+    }
+
+    .call-to-action h1, .call-to-action a {
+        margin-bottom: 30px;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .sign-in-header {
+        height: 1800px;
+        min-height: 1800px;
+    }
+
+    .sign-up-header {
+        height: 1950px;
+        min-height: 1950px;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    header {
+        height: 1300px;
+        min-height: 1300px;
+    }
+
+    .sign-in-header {
+        height: 1400px;
+        min-height: 1400px;
+    }
+
+    .sign-up-header {
+        height: 1600px;
+        min-height: 1600px;
+    }
+
+    header h1 {
+        margin: 1em 0 0 0;
+    }
+
+    .about h1 {
+        padding-top: 800px;
+    }
+
+    .call-to-action h1 {
+        display: block;
+        margin-bottom: 30px !important;
+    }
+
+    .call-to-action h1, .call-to-action a {
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    header {
+        height: 1200px;
+        min-height: 1200px;
+    }
+
+    .sign-in-header {
+        height: 1100px;
+        min-height: 1100px;
+    }
+
+    .sign-up-header {
+        height: 1300px;
+        min-height: 1300px;
+    }
+    
+    .about {
+        min-height: 700px;
+        height: 700px;
+    }
+
+    .about h1 {
+        padding-top: 700px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    header {
+        height: 1100px;
+        min-height: 1100px;
+    }
+
+    .sign-in-header {
+        height: 1000px;
+        min-height: 1000px;
+    }
+
+    .sign-up-header {
+        height: 1200px;
+        min-height: 1200px;
+    }
+
+    header input[type="submit"] {
+        width: 100% !important;
+    }
+
+    .about {
+        min-height: 500px;
+        height: 500px;
+    }
+
+    .about h1 {
+        padding-top: 500px;
+    }
+}
+
+
+
+
+@keyframes float {
+    0% { transform: translateY(3px); }
+
+    50% { transform: translateY(-3px); }
+
+    100% { transform: translateY(3px); }
+}

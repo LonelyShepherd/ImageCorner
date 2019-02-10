@@ -1,0 +1,82 @@
+﻿@model ImageCorner.Models.ExternalViewModel
+@{
+    Layout = null;
+    string User;
+    string ItemName;
+
+    if (Model.Type == "album")
+    {
+        User = Model.Album.ApplicationUser.FirstName + " " + Model.Album.ApplicationUser.LastName;
+        ItemName = Model.Album.Name;
+    }
+    else
+    {
+        User = Model.Image.ApplicationUser.FirstName + " " + Model.Image.ApplicationUser.LastName;
+        ItemName = Model.Image.Name;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ItemName - ImageCorner</title>
+    @Styles.Render("~/Content/external.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="@Url.Action("Index", "Home")">
+                <img src="/assets/images/logo.png">ImageCorner
+            </a>
+            <div>
+                @Html.ActionLink("Sign In", "Login", "Account")
+                @Html.ActionLink("Sign Up", "Register", "Account")
+            </div>
+        </div>
+        <div class="shared-info">
+            <span>@ItemName</span>
+            <span>Shared by @User</span>
+        </div>
+    </div>
+    <div class="shared-content">
+        @if (Model.Type == "album")
+        {
+            <ul class="shared-album">
+                @foreach (var image in Model.Album.Images)
+                {
+                    <li id="@image.Id" data-title="@image.Name">
+                        <div class="image-container" title="@image.Name">
+                            <img src="~/Uploads/@image.ApplicationUserId/@image.Name" />
+                        </div>
+                        <div>
+                            <span>@image.Name</span>
+                            <span>@image.Posted.ToShortTimeString() - @image.Posted.ToShortDateString()</span>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="gallery">
+                <div>
+                    <span class="title"></span><span class="author"></span>
+                </div>
+                <img src="" />
+                <button data-action="close"></button>
+                <button data-action="prev"></button>
+                <button data-action="next"></button>
+            </div>
+        }
+        else
+        {
+            <div class="shared-image">
+                <img src="@("/Uploads/" + Model.Image.ApplicationUserId + "/" + Model.Image.Name)" />
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+@Scripts.Render("~/assets/js/external.bundle.js")
+

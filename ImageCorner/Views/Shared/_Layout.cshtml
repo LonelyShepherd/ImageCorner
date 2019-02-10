@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>ImageCorner</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @RenderBody()
+    <footer>
+        <p>&copy; @DateTime.Now.Year ImageCorner</p>
+    </footer>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@RenderSection("scripts", required: false)
+</html>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <nav>
+        <a href="@Url.Action("Index", "Home")" class="brand">
+            <img src="~/assets/images/logo.png" />
+            ImageCorner
+        </a>
+        @Html.Partial("_LoginPartial")
+    </nav>
+    <h1>Share your most memorable images with the rest of the world.</h1>
+    @Html.ActionLink("Sign Up", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn-outline" })
+</header>
+<div class="about">
+    <h1>Showcase your best work and become an inspiration for anyone.</h1>
+</div>
+<div class="call-to-action">
+    <h1>Sign Up Now</h1>
+    @Html.ActionLink("Get Started", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn-filled" })
+</div>

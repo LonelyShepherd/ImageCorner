@@ -1,0 +1,51 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ImageCorner.Models.Image, ImageCorner.Models.ApplicationUser>
+@{
+    var Image = Model.PageModel;
+    var User = Model.LayoutModel;
+    ViewBag.Title = Image.Name + " - ImageCorner";
+    ViewBag.PageTitle = Image.Name;
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<body id="preview">
+    <div class="dashboard-nav-overlay"></div>
+    <div class="dashboard-nav-container">
+        <div class="dashboard-nav-logo">
+            <a href="/User"><img src="~/assets/images/logo.png" /></a>
+        </div>
+        <ul class="dashboard-nav-content list-unstyled">
+            <li>@Html.ActionLink("Home", "Index")</li>
+            <li>@Html.ActionLink("My Corner", "MyCorner")</li>
+            <li>@Html.ActionLink("Showcase", "Showcase")</li>
+        </ul>
+    </div>
+    <div class="dashboard-header clearfix">
+        <h4>@Html.ActionLink(Image.Name, "Index")</h4>
+        <div class="options">
+            <button class="share-button" id="@Image.Id" data-share="true" data-share-type="image">Share image</button>
+            @{Html.RenderPartial("~/Views/Shared/_User.cshtml", User);}
+        </div>
+    </div>
+    <div class="page-content">
+        <button type="button" class="nav-collapser" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="dashboard-content">
+            <div class="preview">
+                <img src="@("/Uploads/" + Image.ApplicationUserId + "/" + Image.Name)" />
+            </div>
+        </div>
+    </div>
+    <div class="js-actions-info">
+        <i></i>
+        <span></span>
+        <button>Close</button>
+    </div>
+</body>
+
+@Scripts.Render("~/assets/js/preview.bundle.js")
+
+
+

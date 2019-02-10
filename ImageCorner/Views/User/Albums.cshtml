@@ -1,0 +1,153 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ICollection<ImageCorner.Models.Album>, ImageCorner.Models.ApplicationUser>
+@{
+    var Albums = Model.PageModel.OrderByDescending(m => m.Id);
+    var User = Model.LayoutModel;
+    ViewBag.Title = "Albums - ImageCorner";
+    ViewBag.PageTitle = "Albums";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<body>
+    <div class="dashboard-nav-overlay"></div>
+    <div class="dashboard-nav-container">
+        <div class="dashboard-nav-logo">
+            <a href="/User"><img src="~/assets/images/logo.png" /></a>
+        </div>
+        <ul class="dashboard-nav-content list-unstyled">
+            <li>@Html.ActionLink("Home", "Index", routeValues: null, htmlAttributes: new { @class = "active" })</li>
+            <li>@Html.ActionLink("My Corner", "MyCorner")</li>
+            <li>@Html.ActionLink("Showcase", "Index")</li>
+        </ul>
+    </div>
+    <div class="dashboard-header clearfix">
+        <h4>@ViewBag.PageTitle</h4>
+        <div class="options">
+            <div>
+                <div></div>
+                <button class="create-album-button">Create Album</button>
+                <div class="js-modal js-modal-album-create" aria-hidden="true">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div>
+                                <h4>New Album</h4>
+                                <div>
+                                    <div class="js-select">
+                                        <span class="js-select-drop selected"></span>
+                                        <div class="menu" aria-hidden="true">
+                                            <ul>
+                                                <li class="default">Public</li>
+                                                <li>Private</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <label for="album-name">Name</label>
+                            <input id="album-name" type="text" />
+                            <label>Select images</label>
+                            <ul class="clearfix">
+                                @foreach(var image in User.Images.Where(m => m.HasAlbum == false))
+                                {
+                                    <li id="@image.Id">
+                                        <span></span>
+                                        <img src="~/Uploads/@User.Id/@image.Name" />
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="button" class="btn btn-default">Cancel</button>
+                                <button type="button" class="btn btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user">
+                <div class="js-dropdown js-user-dropdown" aria-hidden="true">
+                    <button class="js-dropdown-drop"></button>
+                    <div class="menu" aria-hidden="true">
+                        <div class="section">
+                            @(User.FirstName + " " + User.LastName)
+                            <small>@User.Email</small>
+                        </div>
+                        <ul class="section list-unstyled">
+                            <li>
+                                @Html.ActionLink("Settings", "Index", "Manage", routeValues: null, htmlAttributes: new { })
+                            </li>
+                        </ul>
+                        <ul class="section list-unstyled">
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign off</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+        <button type="button" class="nav-collapser" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="dashboard-content">
+            <div class="albums">
+                <ul class="clearfix">
+                    @foreach (var album in Albums)
+                    {
+                        <li>
+                            <div></div>
+                            <div>
+                                <span>@album.Name</span>
+                                <span>@album.Images.Count images</span>
+                                <div class="js-dropdown js-image-dropdown" aria-hidden="true">
+                                    <button class="js-dropdown-drop"><i></i><i></i><i></i></button>
+                                    <div class="menu" aria-hidden="false" style="display: block;">
+                                        <ul class="section">
+                                            <li><button>Share</button></li>
+                                            <li><button>Make Private</button></li>
+                                            <li><button>Remove</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div id="share-modal" class="js-modal js-modal-share js-modal-no-footer" aria-hidden="true">
+                <div class="js-modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="js-modal-close"></button>
+                        <div>
+                            <h4>Share</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <span></span>
+                        <div>
+                            <span>No link created</span>
+                            <input type="text" readonly="readonly" />
+                            <button>Create link</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="js-actions-info">
+        <i></i>
+        <span></span>
+        <button>Close</button>
+    </div>
+</body>
+
+@Scripts.Render("~/assets/js/albums.bundle.js")

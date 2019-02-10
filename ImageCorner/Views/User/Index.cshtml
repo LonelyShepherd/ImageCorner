@@ -1,0 +1,101 @@
+﻿@model ImageCorner.Models.LayoutViewModel<ICollection<ImageCorner.Models.Image>, ImageCorner.Models.ApplicationUser>
+@{
+    var Images = Model.PageModel;
+    var User = Model.LayoutModel;
+    ViewBag.Title = "Home - ImageCorner";
+    ViewBag.PageTitle = "Home";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<body>
+    <div class="dashboard-nav-overlay"></div>
+    <div class="dashboard-nav-container">
+        <div class="dashboard-nav-logo">
+            <a href="/User"><img src="~/assets/images/logo.png" /></a>
+        </div>
+        <ul class="dashboard-nav-content list-unstyled">
+            <li>@Html.ActionLink("Home", "Index", routeValues: null, htmlAttributes: new { @class = "active" })</li>
+            <li>@Html.ActionLink("My Corner", "MyCorner")</li>
+            <li>@Html.ActionLink("Showcase", "Showcase")</li>
+        </ul>
+    </div>
+    <div class="dashboard-header clearfix">
+        <h4>@ViewBag.PageTitle</h4>
+        <div class="options">
+            @{Html.RenderPartial("~/Views/Shared/_User.cshtml", User);}
+        </div>
+    </div>
+    <div class="page-content">
+        <button type="button" class="nav-collapser" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="dashboard-content">
+            <div class="home-access">
+                <div class="home-access-section home-access-recent-section">
+                    <h6>Recent uploads</h6>
+                    <ul class="clearfix">
+                        @foreach (var image in Images)
+                        {
+                            var diff = DateTime.Now - image.Posted;
+                            var posted = "";
+
+                            if (diff.Days == 0)
+                            {
+                                if (diff.Hours == 0)
+                                {
+                                    if (diff.Minutes == 0)
+                                    {
+                                        posted = diff.Seconds.ToString() + " seconds";
+                                    }
+                                    else
+                                    {
+                                        posted = diff.Minutes.ToString() + " minutes";
+                                    }
+                                }
+                                else
+                                {
+                                    posted = diff.Hours.ToString() + " hours";
+                                }
+                            }
+                            else
+                            {
+                                posted = diff.Days.ToString() + " days";
+                            }
+                            <li id="@image.Id" class="image-item">
+                                <div class="details">
+                                    <a href=@("/User/Preview?id=" + image.Id)>@image.Name</a>
+                                    <small>Added @posted ago</small>
+                                </div>
+                                <div class="actions">
+                                    <div class="js-dropdown">
+                                        <button class="js-dropdown-drop btn btn-default details">
+                                            <span>
+                                                <i></i><i></i><i></i>
+                                            </span>
+                                        </button>
+                                        <div class="menu" aria-hidden="true">
+                                            <ul class="section">
+                                                <li><button>Share</button></li>
+                                                <li><button>Remove</button></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default hidden">Share</button>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="js-actions-info">
+        <i></i>
+        <span></span>
+        <button>Close</button>
+    </div>
+</body>
+
+@Scripts.Render("~/assets/js/app.bundle.js")
